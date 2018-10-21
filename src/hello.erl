@@ -10,11 +10,16 @@ say_something(What, Times) ->
   say_something(What, Times - 1).
 
 start() ->
-  Pid =spawn(hello, p, []),
-  Pid2 =spawn(hello, p, []),
-  Pid ! {Pid2, readlines()} ,
+  if 1 < 2 ->
+    io:format("true ")
+  end,
+  if 1<3 ->
+    Pid =spawn(hello, p, []),
+    Pid2 =spawn(hello, p, []),
+    Pid ! {Pid2, readlines()} ,
+    timer:sleep(5000)
+  end.
 
-  timer:sleep(5000).
 
 p() ->
   receive
